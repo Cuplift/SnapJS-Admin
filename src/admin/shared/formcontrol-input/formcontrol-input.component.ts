@@ -14,16 +14,20 @@ export class FormcontrolInputComponent {
   @Input() inputType = "input";
   constructor(public adminService: AdminService) {}
 
+  ngOnInit() {
+    console.log(this.form.controls[this.field].value);
+  }
+
   /**
    * Update the form value for a boolean instance
    * @param {any} formControlValue the form control value - should be a boolean or blank string
    */
   updateFormValue(formControlValue: any) {
     if (this.inputType === "checkbox") {
-      formControlValue = !Boolean(formControlValue);
+      formControlValue = !formControlValue;
 
       this.form.patchValue({
-        [this.field]: Boolean(formControlValue),
+        [this.field]: formControlValue,
       });
     }
   }
